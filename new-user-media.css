@@ -1,0 +1,17 @@
+@media screen and (max-width: 650px) {
+    
+    .create-user-field p{
+        width: 60%;
+    }
+    .create-user-field input{
+        width: 100%;
+        
+    }
+    .create-user h1{
+        font-size: 32px;
+    }
+    .create-user-button{
+        width: 100%;
+        margin-left: 0%;
+    }
+}

@@ -1,5 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : Feb 22, 2016, 5:44:40 PM
+    Author     : armondluthens
+--%>
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     
@@ -22,7 +27,8 @@
                     <input type="text" name="email" value="" placeholder="john-doe@example.com">
                     
                     <div class="check">
-                        <input type="checkbox" name="new-item" value="new"> 
+                        <input type="checkbox" name="new-item" value="new">
+                        
                     </div>
                     <p>Remember Me</p>
                     
@@ -39,13 +45,13 @@
         <div class="signup">
             <h1>New to ALBA? Join Today!</h1>
             <div class="signup-button">
-                <a href="new-user.html">Sign Up As User</a>
+                <a href="userSignUp.jsp">Sign Up As User</a>
             </div>
             <div class="signup-button">
-                <a href="new-manager.html">Sign Up As Manager</a>
+                <a href="managerSignUp.jsp">Sign Up As Manager</a>
             </div>
             <div class="signup-button">
-                <a href="new-admin.html">Sign Up As Administrator</a>
+                <a href="adminSignUp.jsp">Sign Up As Administrator</a>
             </div>
         </div>
         

@@ -1,0 +1,149 @@
+@media screen and (max-width: 1000px) {
+    .title-top {
+        height: 200px;
+    }
+    .title-top h1{
+        /*margin-left: 1% */
+        /* width: 40%;*/
+        width: 20%;
+        margin-left:5%;
+    }
+
+    .username{
+        /*margin-left: 1% */
+        /* width: 20%;*/
+        width:30%;
+        margin-left: 0%;
+    }
+
+    .password{
+        /*margin-left: 1% */
+        /* width: 20%;*/
+        width:30%;
+    }
+    .login-button{
+        width: 12%;
+    }
+    .login-button button{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .title-top h1{
+        width: 90%;
+        margin-left:5%;
+    }
+
+    .username{
+        width:40%;
+        margin-left: 5%;
+    }
+
+    .password{
+        width:40%;
+    }
+    .login-button{
+        width: 12%;
+    }
+    .login-button button{
+        width: 100%;
+    }
+    .body-left{
+        display: none;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .body-right{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .body-right h1{
+        padding:5px;
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .signup-button button{
+        height: 80px;
+        width: 80%;
+        margin-left: 10%;
+        padding: 10px;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+    .title-top {
+        height: 350px;
+    }
+    .title-top h1{
+        width: 90%;
+        margin-left:5%;
+    }
+
+    .username{
+        width:90%;
+        margin-left: 5%;
+        padding-top: 10px;
+    }
+
+    .password{
+        width:90%;
+        margin-left: 5%;
+        padding-top: 10px;
+    }
+    .login-button{
+        width:90%;
+        margin-left: 5%;
+        padding-top: 10px;
+    }
+    .login-button button{
+        width: 90%;
+    }
+    .check{
+        width: 10%;
+    }
+
+    .check p{
+        width: 20%;
+    }
+    .body-left{
+        display: none;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .body-right{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .body-right h1{
+        padding:5px;
+        font-size: 28px;
+        text-align: center;
+    }
+    
+    .signup{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .signup-button button{
+        height: 80px;
+        width: 80%;
+        margin-left: 10%;
+        padding: 10px;
+    }
+
+    .signup-button button:hover{
+        cursor: pointer;
+        background-color: orangered;
+        border: 3px solid orangered;
+        color: white;
+    }
+}

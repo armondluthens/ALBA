@@ -1,0 +1,119 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 22, 2016, 5:49:46 PM
+    Author     : armondluthens
+*/
+
+/*-----------------------------------------------------------
+        Big
+/*-----------------------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+/*-----------------------------------------------------------
+        Top
+/*-----------------------------------------------------------*/
+.title-top {
+    font-family: 'Oswald', sans-serif;
+    margin-left:0%;
+    margin-right:0%;
+    width:100%;
+    background-color: black;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    float: left;
+    border-bottom: 5px solid white;
+}
+
+.title-top h1{
+    float: left;
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 50px;
+}
+
+/*-----------------------------------------------------------
+        ABOUT
+/*-----------------------------------------------------------*/
+.hello-user{
+    width: 80%;
+    float: left;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+}
+
+.hello-user h1{
+    font-size: 50px;
+    padding-bottom: 10px;
+}
+
+.hello-user h3{
+    font-size: 35px;
+}
+    
+/*-----------------------------------------------------------
+        Footer
+/*-----------------------------------------------------------*/
+.footer{
+    float: left;
+    width: 100%;
+    margin-top: 200px;
+    border-top: 5px solid white;
+}
+
+.footer ul{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}
+
+.footer li {
+    font-family: sans-serif;
+    font-size: 20px;
+    display: inline;
+    font-family: 'Oswald', sans-serif;
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
+    padding-left:10px;
+    padding-right: 10px;
+    
+}
+
+.footer a:hover {
+    color: orangered;
+}
+
+.footer img{
+    opacity: 0.7;
+    height: 50px;
+    width: 50px;
+}
+.footer img:hover{
+    opacity: 1.0;
+}
+
+
+
+
+
+
+

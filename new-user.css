@@ -26,148 +26,92 @@
 
 .title-top h1{
     float: left;
-    width: 40%;
-    margin-left:5%;
-    padding-top: 30px; 
-}
-
-.username{
-    padding-top: 30px;
-    width:20%;
-    float:left;
-    margin-left: 1%;
-}
-
-.password{
-    margin-left: 1%;
-    padding-top: 30px;
-    width:20%;
-    float:left;
-}
-.login-button{
-    padding-top: 30px; 
-    float:left;
-    width: 10%;
-}
-
-.check{
-    width: 12%;
-    float: left;
-}
-
-.check p{
-    width: 10%;
-    float:left;
-    text-align: left;
-}
-.username p{
-    width: 88%;
-    float:left;
-    text-align: left;
-    padding-top: 5px;
-}
-.password p{
     width: 100%;
-    float:left;
-    text-align: left;
-    padding-top: 5px;
-}
-.username input{
-    float: left;
-    height: 40px;
-    border-radius: 5px;
-    width: 90%;
-    font-size: 18px;
-    font-family: 'Oswald', sans-serif;
-    background-color: white;
-    color: black;
-}
-
-.password input{
-    float: left;
-    height: 40px;
-    border-radius: 5px;
-    width: 90%;
-    font-size: 18px;
-    background-color: white;
-    color: black;
-}
-.password a{
-    text-decoration: none;
-    color: white;
-}
-
-.password a:hover{
-    color: lightgray;   
-}
-
-.login-button button{
-    float: left;
-    height: 40px;
-    border-radius: 5px;
-    background-color: white;
-    width: 70%;
-    font-size: 18px;
-    font-family: 'Oswald', sans-serif;
-}
-
-.login-button button:hover{
-    cursor: pointer;
-    background-color: orangered;
-    border: 3px solid orangered;
-    color: white;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 50px;
 }
 
 /*-----------------------------------------------------------
-        SIGN UP
+        ABOUT
 /*-----------------------------------------------------------*/
-
-
-.signup{
-    float: left;
-    width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
+.create-user{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 20px;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-    background-color: black;
-    color: white;
-    border-radius: 5px;
+    margin-bottom: 100px;
+    float: left;
 }
 
-.signup-button{
+.create-user h1{
+    font-size: 40px;
+    font-family: 'Oswald', sans-serif;
+    float: left;
+    width: 100%;
+    color: white;
+}
+
+.create-user-field{
     width: 100%;
     float: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.signup h1{
-    text-align: center;
-}
-
-.signup-button a{
-    text-decoration: none;
-    text-align: center;
-    color: black;
-    padding-top: 20px;
+.create-user-field p{
+    width: 30%;
     float: left;
+    text-align: left;
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+}
+
+.create-user-field input{
+    float: left;
+    height: 40px;
+    border-radius: 5px;
+    width: 60%;
+    font-size: 18px;
+    font-family: 'Oswald', sans-serif;
+    background-color: white;
+    color: black;
+}
+
+.gender-field select{
+    color: black;
+    width: 60%;
+    float: left;
+    background-color: white;
+    height: 40px;
+    font-size: 18px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.create-user-button{
+    width: 60%;
+    margin-left: 30%;
+    float: left;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.create-user-button button{
+    width: 100%;
+    float: left;
+    background-color: orangered;
+    color: black;
     height: 60px;
     border-radius: 5px;
-    background-color: white;
-    margin-left: 15%;
-    margin-right: 15%;
-    width: 70%;
     font-size: 22px;
     font-family: 'Oswald', sans-serif;
-    margin-top:15px;
-    margin-bottom: 15px;
 }
 
-.signup-button a:hover{
-    cursor: pointer;
+.create-user-button button:hover{
     background-color: orangered;
-    border: 3px solid orangered;
     color: white;
+    cursor: pointer;
 }
     
 /*-----------------------------------------------------------
