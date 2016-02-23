@@ -16,16 +16,15 @@ public class EmailConfirmation {
 	private String SMTPServer;
 	private String password;
 	
-	public EmailConfirmation(String rE, String sE, String SMTP, String password){
+	public EmailConfirmation(){
 		
-		this.recipientEmail = rE;
-		this.senderEmail = sE;
-		this.SMTPServer = SMTP;
-		this.password = password;
+		this.senderEmail = "gbautoemail@gmail.com";
+		this.SMTPServer = "smtp.gmail.com";
+		this.password = "autoemail";
 		
 	}
 
-	public void send(String subject, String body){
+	public void sendActivation(String recipientEmail, String name, String token){
 		
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -52,9 +51,12 @@ public class EmailConfirmation {
 		               InternetAddress.parse(recipientEmail));
 			
 			   // Set Subject: header field
-			   message.setSubject(subject);
+			   message.setSubject("Activate Your Account");
 			
 			   // Now set the actual message
+                           
+                           String url = "http://localhost:8080/Databases/activate.jsp?&token=" + token;
+                           String body = "Hello " + name + ",\n\nPlease click the link below to activate your account:\n\n" + url;
 			   message.setText(body);
 
 			   // Send message
