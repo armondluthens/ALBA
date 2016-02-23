@@ -12,6 +12,7 @@
     String phone = request.getParameter("phoneNumber");
     String gender = request.getParameter("gender");
     String password = request.getParameter("password");
+    String code = request.getParameter("Code");
     
 
     //INSERT VARIABABLE INTO DB
@@ -45,6 +46,7 @@
             <h3>Phone: <%= phone %></h3>
             <h3>Gender: <%= gender %></h3>
             <h3>Password: <%= password %></h3>
+            <h3>Code: <%= code %></h3>
             
         </div>
 
