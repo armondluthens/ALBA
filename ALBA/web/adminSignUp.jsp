@@ -5,6 +5,27 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String enterValidEmail = "";
+    
+    String firstName = "";
+    String lastName = "";
+    String phone = "";
+    String gender = "";
+    String code = "";
+  
+    if(request.getParameter("firstName") != null){
+        firstName = request.getParameter("firstName");
+        lastName = request.getParameter("lastName");
+        phone = request.getParameter("phoneNumber");
+        gender = request.getParameter("gender");
+        code = request.getParameter("code");
+        
+        enterValidEmail = "-- Email Has Already Been Used";
+    }
+   
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,29 +34,106 @@
         <link href='http://fonts.googleapis.com/css?family=Lato:100,400,700,900' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Prociono' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
-        <title>ALBA</title>
+        <title>ALBA | Admin Sign Up</title>
         <meta name="description" content="ALBA web page">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="signUp.css">
         <link rel="stylesheet" href="signUp-media.css">
+        
+        <script type="text/javascript">
+            function validateForm(form){
+                var errorCount=0;
+                var re = /^[\w ]+$/; //regular expression to match only alphanumeric characters and spaces
+                //FIRST NAME VALIDATION
+                if(form.firstName.value.length > 30) {
+                    alert("First Name Must be less than 30 characters");
+                    form.password.focus();
+                    errorCount++;
+                    return false;
+                }
+                if(!re.test(form.firstName.value)) {
+                    alert("Error: Input contains invalid characters");
+                    form.password.focus();
+                    errorCount++;
+                    return false;
+                }
+                
+                //LAST NAME VALIDATION
+                if(form.lastName.value.length > 30) {
+                    alert("Last name must be less than 30 characters");
+                    form.password.focus();
+                    errorCount++;
+                    return false;
+                }
+                if(!re.test(form.lastName.value)) {
+                    alert("Error: Input contains invalid characters");
+                    form.password.focus();
+                    errorCount++;
+                    return false;
+                }
+                
+                //PHONE NUMBER VALIDATION
+                if(form.phoneNumber.value.length != 10){
+                    alert("Error: Phone number is invalid");
+                    form.phoneNumber.focus();
+                    errorCount++;
+                    return false;
+                }
+                //PASSWORD VALIDATION
+                if(form.password.value != form.password2.value) {
+                    alert("Error: Passwords Do Not Match");
+                    form.password.focus();
+                    errorCount++;
+                    return false;
+                }
+                if(!re.test(form.password.value)) {
+                    alert("Error: Input contains invalid characters");
+                    form.password.focus();
+                    errorCount++;
+                    return false;
+                }
+                
+                //ADMIN CODE VALIDATION
+                var codeNum = form.Code.value;
+                var codeString = String(codeNum);
+                var firstDigit = codeString.charAt(0);
+                
+                if(firstDigit != "0") {
+                    alert("Error: Invalid Admin Code");
+                    form.password.focus();
+                    errorCount++;
+                    return false;
+                }
+                if(codeString.length != 5){
+                    alert("Error: Invalid Admin Code");
+                    form.password.focus();
+                    errorCount++;
+                    return false;
+                }
+                if(errorCount == 0){
+                    return true; // validation was successful
+                }
+                
+            }
+        </script>
     </head>
     <body>
         <div class="title-top">
-            <h1>ALBA, INC.</h1>
+            <h1>ALBA, INC. <span><%= enterValidEmail %></h1>
         </div>
         
         <div class="create-user">
             <h1>Administrator Sign Up</h1>
             
-            <form action="hello.jsp" method="post">
+            <form method="POST" action="hello.jsp" onsubmit="return validateForm(this);">
             <div class="create-user-field">
                 <p>First Name</p>
-                <input type="text" name="firstName" value="" placeholder="John" required>
+                <input type="text" name="firstName" value="<%= firstName %>" placeholder="John" required>
             </div>
             
             <div class="create-user-field">
                 <p>Last Name</p>
-                <input type="text" name="lastName" value="" placeholder="Doe" required>
+                <input type="text" name="lastName" value="<%= lastName %>" placeholder="Doe" required>
             </div>
             
             <div class="create-user-field">
@@ -45,15 +143,15 @@
             
             <div class="create-user-field">
                 <p>Phone Number</p>
-                <input type="number" name="phoneNumber" value="" placeholder="5555555555" required>
+                <input type="number" name="phoneNumber" value="<%= phone %>" placeholder="5555555555" required>
             </div>
             
             <div class="create-user-field">
                 <p>Gender</p>
                 <div class="gender-field">
                     <select name="gender">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="<%= gender %>">Male</option>
+                        <option value="<%= gender %>">Female</option>
                     </select>
                 </div>
             </div>
@@ -65,13 +163,14 @@
             
             <div class="create-user-field">
                 <p>Re-enter Password</p>
-                <input type="password" name="reenterPassword" value="" required>
+                <input type="password" name="password2" value="" required>
             </div>
             
             <div class="create-user-field">
                 <p>Administrator Code</p>
-                <input type="text" name="Code" value="" required>
+                <input type="number" name="Code" value="<%= code %>" required>
             </div>
+            <input type="hidden" name="formType" value="user">
             
             <div class="create-user-button">
                 <button type="submit">Create Account</button>

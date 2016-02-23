@@ -14,7 +14,7 @@
         <link href='http://fonts.googleapis.com/css?family=Lato:100,400,700,900' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Prociono' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
-        <title>JUICE</title>
+        <title>ALBA</title>
         <meta name="description" content="ALBA web page">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="login-page.css">
@@ -23,23 +23,22 @@
     <body>
         <div class="title-top">
             <h1>ALBA, INC.</h1>
-                <div class="username">
-                    <input type="text" name="email" value="" placeholder="john-doe@example.com">
-                    
-                    <div class="check">
-                        <input type="checkbox" name="new-item" value="new">
-                        
+                <form action="profile.jsp" method="GET">
+                    <div class="username">
+                        <input type="text" name="email" value="" placeholder="john-doe@example.com">
+                        <div class="check">
+                            <input type="checkbox" name="new-item" value="new"> 
+                        </div>
+                        <p>Remember Me</p>
                     </div>
-                    <p>Remember Me</p>
-                    
-                </div>
-                <div class="password">
-                    <input type="password" name="password" value="">
-                    <p><a href="#">Forgot Password</a></p>
-                </div>
-                <div class="login-button">
+                    <div class="password">
+                        <input type="password" name="password" value="">
+                        <p><a href="#">Forgot Password</a></p>
+                    </div>
+                    <div class="login-button">
                         <button type="submit">Sign In</button>
-                </div>
+                    </div>
+                </form>
         </div>
         
         <div class="signup">
