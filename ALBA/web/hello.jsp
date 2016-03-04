@@ -4,6 +4,7 @@
     Author     : armondluthens
 --%>
 
+<%@page import="Armond_Test.PasswordEncryption"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -24,6 +25,24 @@
     String code = request.getParameter("Code");
     String token = TokenGenerator.generate();
     String fullName= firstName + " " + lastName;
+    String role="";
+    
+    //ENCRYPT PASSWORD
+    PasswordEncryption encryptor = new PasswordEncryption();
+    String encryptedPassword = encryptor.encryptPassword(password);
+    
+    boolean validCode = false;
+    if(formType.equals("user")){
+        role = "User";
+        validCode = true;
+    }
+    else if(formType.equals("manager")){
+        role = "Manager";
+    }
+    else{
+        role = "Admin";
+    }
+    
     
     Statement stmt;
     Connection con;
@@ -31,6 +50,30 @@
     Class.forName("com.mysql.jdbc.Driver");
     con = DriverManager.getConnection(url, "root", ""); 
     stmt = con.createStatement();
+    
+    if(formType.equals("admin")){
+        String checkForAdminCode = "SELECT Code FROM ADMIN_CODES WHERE Code = '"+ code +"' AND FirstName='" +firstName + "' AND LastName= '"+ lastName + "'; ";
+        String codeFromSQL="";
+        ResultSet codeRs = stmt.executeQuery(checkForAdminCode);
+        while(codeRs.next()){
+            codeFromSQL = codeRs.getString("Code");
+            if(codeFromSQL.equals(code)){
+                validCode = true;
+            }
+        }
+    }
+    
+    if(formType.equals("manager")){
+        String checkForManagerCode = "SELECT Code FROM MANAGER_CODES WHERE Code = '"+ code +"' AND FirstName='" +firstName + "' AND LastName= '"+ lastName + "'; ";
+        String codeFromSQL="";
+        ResultSet codeRs = stmt.executeQuery(checkForManagerCode);
+        while(codeRs.next()){
+            codeFromSQL = codeRs.getString("Code");
+            if(codeFromSQL.equals(code)){
+                validCode = true;
+            }
+        }
+    }
     
     boolean invalidEmail= false;
     String checkForEmail = "SELECT email FROM USERS WHERE email = '"+ email +"'";
@@ -45,12 +88,12 @@
     //String sqlInsertNewUser = "INSERT INTO USER (username, first_name, last_name, phone, email, password, confirmed)";
     //String sqlInsertValues = "VALUES ('user','"+firstName+"','"+lastName+"','"+phone+"','"+email+"','"+password+"', 1);";
     
-    String sqlInsertNewUser2 = "INSERT INTO USERS (UserID, FirstName, LastName, Gender, Phone, Email, Password, Activated)";
-    String sqlInsertValues2 = "VALUES ('"+ token +"','"+firstName+"','"+lastName+"','"+ gender +"','"+ phone +"','"+ email +"', '"+ password +"', '0');";
+    String sqlInsertNewUser2 = "INSERT INTO USERS (UserID, FirstName, LastName, Gender, Phone, Email, Password, Activated, Role)";
+    String sqlInsertValues2 = "VALUES ('"+ token +"','"+firstName+"','"+lastName+"','"+ gender +"','"+ phone +"','"+ email +"', '"+ encryptedPassword +"', '0', '"+ role +"');";
 
     String redirectURL = "";
     //IF EMAIL ALREADY EXISTS IN DATABASE
-    if(invalidEmail == true){
+    if(invalidEmail == true || validCode == false){
         if(formType.equals("user")){
             redirectURL = "userSignUp.jsp?&firstName=" + firstName + "&lastName=" + lastName + "&phoneNumber=" + phone + "&gender=" + gender;
             response.sendRedirect(redirectURL);

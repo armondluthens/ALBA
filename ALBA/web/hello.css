@@ -65,6 +65,56 @@ and open the template in the editor.
 }
     
 /*-----------------------------------------------------------
+        SIGN UP
+/*-----------------------------------------------------------*/
+
+.deactivate{
+    float: left;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
+.deactivate-button{
+    width: 100%;
+    float: left;
+}
+
+.deactivate h1{
+    text-align: center;
+}
+
+.deactivate-button a{
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    padding-top: 20px;
+    float: left;
+    height: 60px;
+    border-radius: 5px;
+    background-color: white;
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 70%;
+    font-size: 22px;
+    font-family: 'Oswald', sans-serif;
+    margin-top:15px;
+    margin-bottom: 20px;
+}
+
+.deactivate-button a:hover{
+    cursor: pointer;
+    background-color: orangered;
+    /*border: 3px solid orangered;*/
+    color: white;
+}
+/*-----------------------------------------------------------
         Footer
 /*-----------------------------------------------------------*/
 .footer{

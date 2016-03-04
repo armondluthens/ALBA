@@ -169,13 +169,13 @@ and open the template in the editor.
     font-size: 22px;
     font-family: 'Oswald', sans-serif;
     margin-top:15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .signup-button a:hover{
     cursor: pointer;
     background-color: orangered;
-    border: 3px solid orangered;
+    /*border: 3px solid orangered;*/
     color: white;
 }
     

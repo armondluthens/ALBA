@@ -89,35 +89,37 @@
     </head>
     <body>
         <div class="title-top">
-            <h1>ALBA, INC.</h1>
+            <a href="index.jsp"><h1>ALBA, INC.</h1></a>
         </div>
         
         <div class="create-user">
             <h1>User Sign Up <span><%= enterValidEmail %></span></h1>
+            <h6><span style="color: orangered;"> *</span> required field</h6>
+            <h6><span style="color: orangered;"> **</span> password must be alphanumeric and at least 6 characters (only letters and numbers)</h6>
             
             <form method="POST" action="hello.jsp" onsubmit="return validateForm(this);">
             <div class="create-user-field">
-                <p>First Name</p>
+                <p>First Name<span style="color: orangered;"> *</span></p>
                 <input type="text" name="firstName" value="<%= firstName%>" placeholder="John" required>
             </div>
             
             <div class="create-user-field">
-                <p>Last Name</p>
+                <p>Last Name<span style="color: orangered;"> *</span></p>
                 <input type="text" name="lastName" value="<%= lastName%>" placeholder="Doe" required>
             </div>
             
             <div class="create-user-field">
-                <p>E-mail Address</p>
+                <p>E-mail Address<span style="color: orangered;"> *</span></p>
                 <input type="email" name="emailAddress" value="" placeholder="john-doe@example.com" required>
             </div>
             
             <div class="create-user-field">
-                <p>Phone Number</p>
+                <p>Phone Number<span style="color: orangered;"> *</span></p>
                 <input type="number" name="phoneNumber" value="<%= phone%>" placeholder="5555555555" required>
             </div>
             
             <div class="create-user-field">
-                <p>Gender</p>
+                <p>Gender<span style="color: orangered;"> *</span></p></p>
                 <div class="gender-field">
                     <select name="gender">
                         <option value="M">Male</option>
@@ -127,12 +129,12 @@
             </div>
             
             <div class="create-user-field">
-                <p>Password</p>
+                <p>Password <span style="color: orangered;"> **</span></p></p>
                 <input type="password" name="password" value="" required>
             </div>
             
             <div class="create-user-field">
-                <p>Re-enter Password</p>
+                <p>Re-enter Password <span style="color: orangered;"> **</span></p></p>
                 <input type="password" name="password2" value="" required>
             </div>
             <input type="hidden" name="formType" value="user">

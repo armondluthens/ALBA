@@ -4,16 +4,13 @@
     Author     : armondluthens
 --%>
 
+<%@page import="java.util.HashMap"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String firstName="Null User";
-    String email= request.getParameter("email");
-    String password= request.getParameter("password");
-    
     Statement stmt;
     Connection con;
     String url = "jdbc:mysql://localhost:3306/ALBA";
@@ -21,35 +18,50 @@
     con = DriverManager.getConnection(url, "root", ""); 
     stmt = con.createStatement();
     
-    boolean validUser= false;
-    String checkForEmail = "SELECT email FROM USERS WHERE email = '" + email + "' AND password = '"+ password+"' ";
+    String email= "";
+    String token= request.getParameter("token");
+    String checkForEmail = "SELECT email FROM USERS WHERE UserID = '" + token + "';";
     String emailReturnedFromSQL="";
     ResultSet emailRs = stmt.executeQuery(checkForEmail);
     while(emailRs.next()){
-        emailReturnedFromSQL = emailRs.getString("email");
-        if(emailReturnedFromSQL.equals(email)){
-            validUser = true;
+        email = emailRs.getString("email");
+    }
+    session.setAttribute( "sessionEmail", email );
+    
+    String firstName="Unknown User";
+    String getFirstName = "SELECT FirstName FROM USERS WHERE email = '"+ email +"'";
+    ResultSet firstNameRs = stmt.executeQuery(getFirstName);
+    while(firstNameRs.next()){
+        firstName = firstNameRs.getString("FirstName");
+    }
+    session.setAttribute( "sessionFirstName", firstName );
+    
+    String role="Unknown Role";
+    String getRole = "SELECT Role FROM USERS WHERE email = '"+ email +"'";
+    ResultSet roleRs = stmt.executeQuery(getRole);
+    while(roleRs.next()){
+        role = roleRs.getString("Role");
+    }
+    
+    /*
+    HashMap<String, String> user = new HashMap<>();
+    String curString;
+    String[] userInformation= {"UserID", "FirstName", "LastName", "Gender", "Email", "Role" };
+    String getUserInfo = "SELECT * FROM USERS WHERE email = '"+ email +"'";
+    ResultSet getUserInfoRs = stmt.executeQuery(getUserInfo);
+    while(getUserInfoRs.next()){
+        for(int i=0; i< userInformation.length; i++){
+            curString = getUserInfoRs.getString(userInformation[i]);
+            user.put(userInformation[i], curString);
         }
     }
-    
-    String redirectURL = "";
-    if(validUser == true){
-        firstName="Michael Franti";
-        
-        String getFirstName = "SELECT FirstName FROM USERS WHERE email = '" + email + "'";
-        String firstNameReturnedFromSQL="";
-        ResultSet firstNameRs = stmt.executeQuery(getFirstName);
-        while(firstNameRs.next()){
-            firstName = firstNameRs.getString("FirstName");
-        }
-        
+    session.setAttribute("sessionLastName", user.get("LastName") );
+    session.setAttribute("sessionGender", user.get("Gender"));
+    */
+    if(role.equals("Unknown Role")){
+        response.sendRedirect("index.jsp");
     }
-    else{
-        redirectURL = "index.jsp";
-        response.sendRedirect(redirectURL);
-    }
-    
-    
+
 %>
 <!DOCTYPE html>
 <html>
@@ -71,10 +83,17 @@
         
         <div class="hello-user">
             <h1>Hello, <%= firstName %>.</h1>
-            <h3>Create your profile.</h3>
+            <h3>Role: <%= role %></h3>
             <!--
             
             -->
+        </div>
+            
+        <div class="footer">
+            <ul>
+                <li><a href="deactivateAccount.jsp">Deactivate My Account</a></li>
+                <li><a href="index.jsp">Log Out</a></li>
+            </ul>
         </div>
 
     </body>

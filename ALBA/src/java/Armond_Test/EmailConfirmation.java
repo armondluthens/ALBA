@@ -11,7 +11,6 @@ package Armond_Test;
  */
 
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -28,10 +27,9 @@ public class EmailConfirmation {
 	private String password;
 	
 	public EmailConfirmation(){
-		
-		this.senderEmail = "gbautoemail@gmail.com";
-		this.SMTPServer = "smtp.gmail.com";
-		this.password = "autoemail";
+            this.senderEmail = "gbautoemail@gmail.com";
+            this.SMTPServer = "smtp.gmail.com";
+            this.password = "autoemail";
 		
 	}
 
