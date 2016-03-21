@@ -82,7 +82,11 @@
                     form.password.focus();
                     return false;
                 }
-
+                if(form.password.value.length < 6){
+                    alert("Error: Password must be at least 6 characters long");
+                    form.password.focus();
+                    return false;
+                }
                 return true; // validation was successful
             }
         </script>

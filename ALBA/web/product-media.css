@@ -1,0 +1,78 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 8, 2016, 1:34:18 PM
+    Author     : armondluthens
+*/
+
+@media screen and (max-width: 700px) {
+    .search-prod input{
+        width: 50%;
+    }
+    .search-prod button {
+        width: 20%;
+    }
+    .styled-select {
+        width: 60%;
+    }
+    .insert-button{
+        width: 20%;
+    }
+    .products-table h4{
+        font-size: 16px;
+    }
+    .manager-product-record h5{
+        font-size: 15px;
+    }
+    .total h1{
+        font-size: 40px;
+        text-align: left;
+    }
+    .total input{
+        margin-left: 10%;
+        width: 80%;
+        font-size: 18px;
+    }
+    .total button {
+        width: 80%;
+        margin-left: 10%;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+   
+
+}
+@media screen and (max-width: 500px) {
+    .search-prod input{
+        width: 65%;
+    }
+    .search-prod button {
+        width: 25%;
+    }
+    .styled-select {
+        width: 65%;
+    }
+    .insert-button{
+        width: 22.5%;
+    }
+    .products-table h4{
+        font-size: 14px;
+    }   
+    .manager-product-record{
+        margin-top: 5px;
+    }
+    .manager-product-record h5{
+        font-size: 12px;
+        
+    }
+    #price{
+        width: 80%;
+    }
+    .buy-product{
+        width: 80%;
+        margin-left: 5%;
+    }
+}

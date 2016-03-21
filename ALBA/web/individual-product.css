@@ -1,0 +1,343 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 7, 2016, 9:17:40 AM
+    Author     : armondluthens
+*/
+
+/*-----------------------------------------------------------
+        Big
+/*-----------------------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+/*-----------------------------------------------------------
+        Top
+/*-----------------------------------------------------------*/
+.title-top {
+    font-family: 'Oswald', sans-serif;
+    margin-left:0%;
+    margin-right:0%;
+    width:100%;
+    background-color: black;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    height: 125px;
+    float: left;
+    border-bottom: 2px solid white;
+}
+.title-top a{
+    text-decoration: none;
+    color: white;
+}
+.title-top h1{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 50px;
+}
+.userbar {
+    font-family: 'Oswald', sans-serif;
+    margin-left:0%;
+    margin-right:0%;
+    width:100%;
+    background-color: black;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    height: 50px;
+    float: left;
+    border-bottom: 2px solid white;
+}
+.userbar a{
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+}
+.userbar h1{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 50px; 
+}
+.userbar h4{
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 5%;
+    font-weight: 100;
+}
+
+/***
+
+*****/
+.search-prod {
+    font-family: 'Oswald', sans-serif;
+    margin-left:0%;
+    margin-right:0%;
+    width:100%;
+    background-color: black;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    height: 90px;
+    float: left;
+    border-bottom: 2px solid white;
+}
+.search-prod input{
+    margin-top: 20px;
+    margin-left: 2%;
+    float: left;
+    height: 40px;
+    border-radius: 5px;
+    width: 30%;
+    font-size: 18px;
+    font-family: 'Oswald', sans-serif;
+    background-color: white;
+    color: black;
+}
+.search-prod button {
+    float: left;
+    width: 10%;
+    background-color: orangered;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    height: 45px;
+    margin-top: 20px;
+    margin-left: 1%;
+    border-radius: 5px;
+    font-size: 18px;
+}
+.search-prod button:hover{
+    background-color: white;
+    color: orangered;
+    cursor: pointer;
+}
+
+/*-----------------------------------------------------------
+        Product Body
+/*-----------------------------------------------------------*/
+.product{
+    width: 90%;
+    float: left;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 20px;
+    border-bottom: 4px solid white;
+    color: white;
+}
+
+.product h1{
+    float: left;
+    width:90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.product h2{
+    float: left;
+    width:90%;
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
+.product p{
+    float: left;
+    width:90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 10px;
+}
+
+.product a:hover{
+    cursor: pointer;
+}
+
+/*-----------------------------------------------------------
+        Quantity Selection
+/*-----------------------------------------------------------*/
+.styled-select {
+    float: left;
+    width: 50%;
+    margin-left: 5%;
+    height: 45px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.styled-select select {
+    background: black;
+    color: white;
+    width: 100%;
+    line-height: 45px;
+    font-size: 18px;
+    height: 45px;
+    float: left;
+    border: 3px solid black;
+    font-family: 'Oswald', sans-serif;
+}
+
+.styled-select select option{
+    background-color: black;
+    color:white;
+}
+
+/*-----------------------------------------------------------
+        Enter Price
+/*-----------------------------------------------------------*/
+#price{
+    width: 50%;
+    margin-left:5%;
+    background-color: white;
+    color: white;
+    padding-bottom: 5px;
+    float:left;
+    margin-top: 5px;
+}
+
+#price input{
+    width: 100%;
+    border-radius: 5px;
+    color: white;
+    padding-top:10px;
+    padding-bottom: 10px;
+    font: 20px 'Oswald', sans-serif;
+}
+
+#price input[type="text"]{
+    background-color: black;
+    border: 2px solid lightgrey;
+}
+/*-----------------------------------------------------------
+        BUY Button
+/*-----------------------------------------------------------*/
+.buy-product{
+    margin-top: 6px;
+    width: 20%;
+    float:left;
+    margin-left: 2.5%;
+    height: 45px;
+}
+
+.buy-product button{
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    color: white;
+    font-size: 18px;
+    font-family: 'Oswald', sans-serif;
+    border-radius: 3px;
+}
+
+.buy-product button:hover{
+    cursor: pointer;
+    background-color: orangered;
+    border: 3px solid orangered;
+    color: white;
+    
+}
+
+.total{
+    width: 100%;
+    float: left;
+    border-bottom: 3px solid white;
+}
+.total h1{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 50px;
+    font-family: 'Oswald', sans-serif;
+    text-align: right;
+}
+.total h2{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 50px;
+    font-family: 'Oswald', sans-serif;
+    text-align: left;
+}
+.total input{
+    margin-top: 20px;
+    margin-left: 53%;
+    margin-right: 1%;
+    float: left;
+    height: 40px;
+    border-radius: 5px;
+    width: 30%;
+    font-size: 18px;
+    font-family: 'Oswald', sans-serif;
+    background-color: white;
+    color: black;
+    margin-bottom: 10px;
+}
+.total button {
+    float: left;
+    width: 10%;
+    background-color: orangered;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    height: 45px;
+    margin-top: 20px;
+    margin-left: 1%;
+    border-radius: 5px;
+    font-size: 18px;
+}
+.total button:hover{
+    background-color: white;
+    color: orangered;
+    cursor: pointer;
+}
+/*-----------------------------------------------------------
+        Footer
+/*-----------------------------------------------------------*/
+.footer{
+    background-color: black;
+    float: left;
+    width: 100%;
+    margin-top: 125px;
+}
+
+.footer ul{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}
+
+.footer li {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    display: inline;
+    
+}
+.footer a {
+    text-decoration: none;
+    color: white;
+    padding-left:10px;
+    padding-right: 10px;
+    
+}
+.footer a:hover {
+    color: orangered;
+}
+
+
+
+
+
+
+
+

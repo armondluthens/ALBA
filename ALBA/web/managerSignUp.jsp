@@ -83,6 +83,11 @@
                     form.password.focus();
                     return false;
                 }
+                if(form.password.value.length < 6){
+                    alert("Error: Password must be at least 6 characters long");
+                    form.password.focus();
+                    return false;
+                }
                 //MANAGER CODE VALIDATION
                 var codeNum = form.Code.value;
                 var codeString = String(codeNum);
@@ -93,7 +98,7 @@
                     form.password.focus();
                     return false;
                 }
-                if(codeString.length != 5){
+                if(codeString.length != 4){
                     alert("Error: Invalid Manager Code");
                     form.password.focus();
                     return false;

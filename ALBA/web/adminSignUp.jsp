@@ -92,7 +92,11 @@
                     errorCount++;
                     return false;
                 }
-                
+                if(form.password.value.length < 6){
+                    alert("Error: Password must be at least 6 characters long");
+                    form.password.focus();
+                    return false;
+                }
                 //ADMIN CODE VALIDATION
                 var codeNum = form.Code.value;
                 var codeString = String(codeNum);

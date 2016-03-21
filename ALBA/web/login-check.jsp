@@ -37,6 +37,13 @@
         activationReturnedFromSQL = actRs.getString("Activated");
     }
     
+    String getRole = "SELECT Role FROM USERS WHERE email = '" + email + "';";
+    String roleReturnedFromSQL="";
+    ResultSet roleRs = stmt.executeQuery(getRole);
+    while(roleRs.next()){
+        roleReturnedFromSQL = roleRs.getString("Role");
+    }
+    
     boolean validUser= false;
     if(password.equals(decryptedPassword)  && activationReturnedFromSQL.equals("1")){
         validUser = true;
@@ -50,8 +57,18 @@
     }
     String redirectURL = "";
     if(validUser == true){
-        redirectURL = "profile.jsp?&token=" + token;
-        response.sendRedirect(redirectURL);
+        if(roleReturnedFromSQL.equals("Manager") ||roleReturnedFromSQL.equals("Admin")){
+            
+            redirectURL = "managerProductPage.jsp?&token=" + token;
+            //redirectURL = "userProductPage.jsp?&token=" + token;
+            response.sendRedirect(redirectURL);
+        }
+        else{
+            redirectURL = "userProductPage.jsp?&token=" + token;
+            //redirectURL = "managerProductPage.jsp?&token=" + token;
+            response.sendRedirect(redirectURL);
+        }
+        
         
     }
     else{

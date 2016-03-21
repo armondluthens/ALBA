@@ -43,7 +43,6 @@
         role = "Admin";
     }
     
-    
     Statement stmt;
     Connection con;
     String url = "jdbc:mysql://localhost:3306/ALBA";
@@ -62,8 +61,7 @@
             }
         }
     }
-    
-    if(formType.equals("manager")){
+    else if(formType.equals("manager")){
         String checkForManagerCode = "SELECT Code FROM MANAGER_CODES WHERE Code = '"+ code +"' AND FirstName='" +firstName + "' AND LastName= '"+ lastName + "'; ";
         String codeFromSQL="";
         ResultSet codeRs = stmt.executeQuery(checkForManagerCode);
@@ -73,6 +71,15 @@
                 validCode = true;
             }
         }
+    }
+    else{
+        String checkForCode = "SELECT COUNT(*) + 2000 FROM USERS;";
+        String codeFromSQL="";
+        ResultSet codeRs = stmt.executeQuery(checkForCode);
+        while(codeRs.next()){
+            codeFromSQL = codeRs.getString("COUNT(*) + 2000");
+        }
+        code = codeFromSQL;
     }
     
     boolean invalidEmail= false;
@@ -85,11 +92,9 @@
             invalidEmail = true;
         }
     }
-    //String sqlInsertNewUser = "INSERT INTO USER (username, first_name, last_name, phone, email, password, confirmed)";
-    //String sqlInsertValues = "VALUES ('user','"+firstName+"','"+lastName+"','"+phone+"','"+email+"','"+password+"', 1);";
     
-    String sqlInsertNewUser2 = "INSERT INTO USERS (UserID, FirstName, LastName, Gender, Phone, Email, Password, Activated, Role)";
-    String sqlInsertValues2 = "VALUES ('"+ token +"','"+firstName+"','"+lastName+"','"+ gender +"','"+ phone +"','"+ email +"', '"+ encryptedPassword +"', '0', '"+ role +"');";
+    String sqlInsertNewUser = "INSERT INTO USERS (UserID, FirstName, LastName, Gender, Phone, Email, Password, Activated, Role, UserCode)";
+    String sqlInsertValues = "VALUES ('"+ token +"','"+firstName+"','"+lastName+"','"+ gender +"','"+ phone +"','"+ email +"', '"+ encryptedPassword +"', '0', '"+ role +"', '"+ code +"');";
 
     String redirectURL = "";
     //IF EMAIL ALREADY EXISTS IN DATABASE
@@ -109,7 +114,7 @@
     }
     else{
         //INSERT RECORD INTO DATABASE
-        stmt.executeUpdate(sqlInsertNewUser2 + sqlInsertValues2);
+        stmt.executeUpdate(sqlInsertNewUser + sqlInsertValues);
         EmailConfirmation emailTest = new EmailConfirmation();
         emailTest.sendActivation(email, fullName, token);
     }
@@ -137,15 +142,6 @@
         <div class="hello-user">
             <h1>Thank you for signing up, <%= firstName %>.</h1>
             <h3>You will be receiving an email shortly.</h3>
-            
-            <h3>Form Type: <%= formType %></h3>
-            <h3>Last Name: <%= lastName %></h3>
-            <h3>Email: <%= email %></h3>
-            <h3>Phone: <%= phone %></h3>
-            <h3>Gender: <%= gender %></h3>
-            <h3>Password: <%= password %></h3>
-            <h3>Code: <%= code %></h3>
-            
         </div>
 
     </body>
