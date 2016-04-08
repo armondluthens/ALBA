@@ -108,7 +108,7 @@
                     errorCount++;
                     return false;
                 }
-                if(codeString.length != 5){
+                if(codeString.length != 4){
                     alert("Error: Invalid Admin Code");
                     form.password.focus();
                     errorCount++;

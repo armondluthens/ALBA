@@ -25,7 +25,7 @@
     HashMap<String, String> product = new HashMap();
     String getAvailableProducts = "SELECT * FROM PRODUCTS WHERE ProductID='"+ productID +"'";
     ResultSet productsRs = stmt.executeQuery(getAvailableProducts);
-    String[] productFields = {"ProductID", "Price", "Qty", "Description","Available", "ProductName", "ManufactureDate", "ExpirationDate", "Color", "Dimensions"};
+    String[] productFields = {"ProductID", "Price", "Qty", "Description","Available", "ProductName", "ManufactureDate", "ExpirationDate", "Color", "Dimensions", "Category", "Supplier"};
     while(productsRs.next()){
         for(int i=0; i<productFields.length; i++){
             curField = productsRs.getString(productFields[i]);
@@ -41,6 +41,8 @@
     String dimensions = product.get("Dimensions");
     String manufactureDate= product.get("ManufactureDate");
     String expirationDate= product.get("ExpirationDate");
+    String category=product.get("Category");
+    String supplier=product.get("Supplier");
    
 %>
 <!DOCTYPE html>
@@ -114,6 +116,14 @@
             <div class="create-user-field">
                 <p>Expiration Date<span style="color: orangered;"> *</span></p>
                 <input type="date" name="expirationDate" value="<%= expirationDate %>" placeholder="" required>
+            </div>
+            <div class="create-user-field">
+                <p>Category<span style="color: orangered;"> *</span></p>
+                <input type="text" name="category123" value="<%= category %>" placeholder="" required>
+            </div>
+            <div class="create-user-field">
+                <p>Supplier<span style="color: orangered;"> *</span></p>
+                <input type="text" name="supplier123" value="<%= supplier %>" placeholder="" required>
             </div>
             <div class="create-user-button">   
                 <button type="submit">UPDATE</button>

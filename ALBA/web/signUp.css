@@ -185,7 +185,20 @@ and open the template in the editor.
 }
 
 
-
+textarea{
+    background-color: white;
+    border-radius: 3px;
+    font-family: 'Oswald', sans-serif;
+    float: left;
+    height: 200px;
+    border-radius: 5px;
+    width: 60%;
+    font-size: 18px;
+    font-family: 'Oswald', sans-serif;
+    background-color: white;
+    color: black;
+    resize: none;
+}
 
 
 

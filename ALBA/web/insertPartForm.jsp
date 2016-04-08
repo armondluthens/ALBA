@@ -17,6 +17,8 @@
     String dimensions = "";
     String manufactureDate="";
     String expirationDate="";
+    String category="";
+    String supplier="";
   
     if(request.getParameter("productName") != null){
         productName = request.getParameter("productName");
@@ -28,6 +30,8 @@
         dimensions = request.getParameter("dimensions");
         manufactureDate=request.getParameter("manufactureDate");
         expirationDate=request.getParameter("expirationDate");
+        manufactureDate=request.getParameter("category");
+        expirationDate=request.getParameter("supplier");
         
         
         enterValidProductID = "-- Product ID Has Already Been Used";
@@ -105,6 +109,14 @@
             <div class="create-user-field">
                 <p>Expiration Date<span style="color: orangered;"> *</span></p>
                 <input type="date" name="expirationDate" value="<%= expirationDate %>" placeholder="" required>
+            </div>
+            <div class="create-user-field">
+                <p>Category<span style="color: orangered;"> *</span></p>
+                <input type="text" name="category123" value="<%= productName%>" placeholder="" required>
+            </div>
+            <div class="create-user-field">
+                <p>Supplier<span style="color: orangered;"> *</span></p>
+                <input type="text" name="supplier123" value="<%= productID %>" placeholder="" required>
             </div>
             <div class="create-user-button">   
                 <button type="submit">INSERT PART</button>

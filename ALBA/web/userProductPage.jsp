@@ -59,7 +59,7 @@
     HashMap<String, String> tempMap = new HashMap();
     //SET SESSION KEYS
     String token= request.getParameter("token");
-    String[] userFields = {"FirstName", "LastName", "Email", "Gender", "Activated"};
+    String[] userFields = {"FirstName", "LastName", "Email", "Gender", "Phone", "Role"};
     String checkForUser = "SELECT * FROM USERS WHERE UserID = '" + token + "';";
     ResultSet userRs = stmt.executeQuery(checkForUser);
     while(userRs.next()){
@@ -84,13 +84,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="product.css">
         <link rel="stylesheet" href="product-media.css">
+        <script>
+        /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
     </head>
     <body>
         <div class="title-top">
             <h1>ALBA, INC.</h1>
         </div>
         <div class="userbar">
-            <h4>Logged In As: <%= session.getAttribute("sessionFirstName") %> <%= session.getAttribute("sessionLastName") %></h4>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Account: <%= session.getAttribute("sessionFirstName") %> <%= session.getAttribute("sessionLastName") %></button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="accountSettings.jsp">Account Settings</a>
+                    <a href="reset-password.jsp">Reset Password</a>
+                    <a href="deactivateAccount.jsp">Deactivate Account</a>
+                    <a href="index.jsp">Logout</a>
+                </div>
+            </div>
+            <!--<h4>Logged In As: <%= session.getAttribute("sessionFirstName") %> <%= session.getAttribute("sessionLastName") %></h4>-->
         </div>
         
         <div class="search-prod">
@@ -100,7 +131,13 @@
             </form>
         </div>
         
-
+        <% if(!session.getAttribute("sessionRole").equals("User")){ %>
+            <div class="selectView">
+                <a href="userProductPage.jsp"><span style="border-bottom: 4px solid orangered;">User View</span></a>
+                <a href="managerProductPage.jsp">Manager View</a>
+            </div>
+        <% } %>
+        
         <div class="products-table">
             <h1>Available Products</h1>
             <h3>Displaying Results: 1 - <%= availableProducts.size()%></h3>
@@ -142,7 +179,7 @@
         </form>
         <div class="footer">
             <ul>
-                <li><a href="deactivateAccount.jsp">Deactivate My Account</a></li>
+                <li><a href="defectiveProduct.jsp">Defective Product Claim</a></li>
                 <li><a href="index.jsp">Log Out</a></li>
             </ul>
         </div>

@@ -17,6 +17,8 @@
     String manufactureDate=request.getParameter("manufactureDate");
     String expirationDate=request.getParameter("expirationDate");
     String description = request.getParameter("description");
+    String category=request.getParameter("category123");
+    String supplier = request.getParameter("supplier123");
         
     Statement stmt;
     Connection con;
@@ -25,7 +27,7 @@
     con = DriverManager.getConnection(url, "root", ""); 
     stmt = con.createStatement();
     
-    String update= "UPDATE PRODUCTS SET productName='"+ productName +"', Price='"+ price +"', Qty='"+ qty +"', Description='"+ description +"', Available='"+ available +"', ManufactureDate='"+ manufactureDate +"', ExpirationDate='"+ expirationDate +"', Color='"+ color + "', Dimensions='"+ dimensions +"' WHERE ProductID='"+ productID +"';";
+    String update= "UPDATE PRODUCTS SET productName='"+ productName +"', Price='"+ price +"', Qty='"+ qty +"', Description='"+ description +"', Available='"+ available +"', ManufactureDate='"+ manufactureDate +"', ExpirationDate='"+ expirationDate +"', Color='"+ color + "', Dimensions='"+ dimensions +"', Category='"+ category+ "', Supplier='"+ supplier +"' WHERE ProductID='"+ productID +"';";
     stmt.executeUpdate(update);
     response.sendRedirect("managerProductPage.jsp");
 %>

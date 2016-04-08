@@ -20,6 +20,8 @@
         String manufactureDate=request.getParameter("manufactureDate");
         String expirationDate=request.getParameter("expirationDate");
         String description = request.getParameter("description");
+        String category= request.getParameter("category123");
+        String supplier = request.getParameter("supplier123");
         
         Statement stmt;
         Connection con;
@@ -28,8 +30,8 @@
         con = DriverManager.getConnection(url, "root", ""); 
         stmt = con.createStatement();
         
-        String sqlInsertPart = "INSERT INTO PRODUCTS (ProductID, ProductName, Price, Qty, Description, Available, ManufactureDate, ExpirationDate, Color, Dimensions)";
-        String sqlInsertPartValues = "VALUES ('"+ productID +"','"+ productName +"','"+ price +"','"+ qty +"','"+ description +"','"+ available +"','"+ manufactureDate +"', '"+ expirationDate +"', '"+ color + "', '"+ dimensions +"');";
+        String sqlInsertPart = "INSERT INTO PRODUCTS (ProductID, ProductName, Price, Qty, Description, Available, ManufactureDate, ExpirationDate, Color, Dimensions, Category, Supplier)";
+        String sqlInsertPartValues = "VALUES ('"+ productID +"','"+ productName +"','"+ price +"','"+ qty +"','"+ description +"','"+ available +"','"+ manufactureDate +"', '"+ expirationDate +"', '"+ color + "', '"+ dimensions + "', '"+ category +"', '"+ supplier +"');";
         
         boolean invalidID= false;
         String checkForID = "SELECT ProductID FROM PRODUCTS WHERE ProductID = '"+ productID +"'";

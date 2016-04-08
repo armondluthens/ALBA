@@ -49,7 +49,7 @@ and open the template in the editor.
     color: white;
     background-size: cover;
     background-position: center;
-    height: 50px;
+    height: 70px;
     float: left;
     border-bottom: 2px solid white;
 }
@@ -70,6 +70,32 @@ and open the template in the editor.
     font-weight: 100;
 }
 
+.selectView{
+    font-family: 'Oswald', sans-serif;
+    margin-left:0%;
+    margin-right:0%;
+    width:100%;
+    background-color: black;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    height: 70px;
+    float: left;
+    border-bottom: 2px solid white;
+}
+.selectView a{
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    float: left;
+    width: 50%;
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.selectView a:hover{
+    color: orangered;
+}
 /***
 
 *****/
@@ -141,7 +167,7 @@ and open the template in the editor.
 }
 
 .products-table h4{
-    width: 12.5%;
+    width: 10%;
     float: left;
     text-align: left;
     font-weight: 100;
@@ -257,7 +283,7 @@ and open the template in the editor.
 
 .manager-product-record h5{
     font-size: 18px;
-    width: 12.5%;
+    width: 10%;
     float: left;
     font-weight: 100;
 }
@@ -411,3 +437,81 @@ and open the template in the editor.
 }
 
 
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: black;
+    color: white;
+    margin-top: 10px;
+    height:50px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    /*background-color: orangered;*/
+    color: orangered;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    float: right;
+    margin-right: 2%;
+    background-color: black;
+    
+}
+.dropdown img{
+    height: 30px;
+    width: 30px;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    margin-right: 2%;    
+    position: absolute;
+    background-color: white;
+    /*min-width: 160px;*/
+    /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+    /*font-size: 15px;*/
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    background-color: white;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: orangered;
+    color:white;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.claimFormat{
+    width: 80%;
+    margin-left: 10%;
+    float: left;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    margin-bottom: 10px;
+}
+.claimFormat h1{
+    font-size: 40px;
+    font-weight: 400;
+    color: orangered;
+}
+
+.claimFormat h2{
+    font-size: 30px;
+    font-weight: 400;
+}
