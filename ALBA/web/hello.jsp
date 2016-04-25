@@ -93,8 +93,8 @@
         }
     }
     
-    String sqlInsertNewUser = "INSERT INTO USERS (UserID, FirstName, LastName, Gender, Phone, Email, Password, Activated, Role, UserCode)";
-    String sqlInsertValues = "VALUES ('"+ token +"','"+firstName+"','"+lastName+"','"+ gender +"','"+ phone +"','"+ email +"', '"+ encryptedPassword +"', '0', '"+ role +"', '"+ code +"');";
+    String sqlInsertNewUser = "INSERT INTO USERS (UserID, FirstName, LastName, Gender, Phone, Email, Password, Activated, Role, UserCode, AdminApproved)";
+    String sqlInsertValues = "VALUES ('"+ token +"','"+firstName+"','"+lastName+"','"+ gender +"','"+ phone +"','"+ email +"', '"+ encryptedPassword +"', '0', '"+ role +"', '"+ code + "', '0');";
 
     String redirectURL = "";
     //IF EMAIL ALREADY EXISTS IN DATABASE

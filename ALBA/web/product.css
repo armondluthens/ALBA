@@ -112,6 +112,16 @@ and open the template in the editor.
     float: left;
     border-bottom: 2px solid white;
 }
+.search-prod img{
+    float: right;
+    height: 50px;
+    width: 50px;
+    margin-right: 3%;
+    margin-top: 20px;
+}
+.search-prod img:hover{
+    opacity: 0.6;
+}
 .search-prod input{
     margin-top: 20px;
     margin-left: 2%;
@@ -514,4 +524,20 @@ and open the template in the editor.
 .claimFormat h2{
     font-size: 30px;
     font-weight: 400;
+}
+.claimFormat button{
+    margin-top: 10px;
+    border-radius: 5px;
+    float: left;
+    width: 60%;
+    background-color: orangered;
+    color: white;
+    height: 60px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+}
+.claimFormat button:hover{
+    background-color: white;
+    color: orangered;
+    cursor: pointer;
 }

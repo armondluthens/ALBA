@@ -11,6 +11,11 @@
 <%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    String loginCheck= (String)session.getAttribute("LoggedIn");
+    if(!loginCheck.equals("1") || loginCheck.equals(null)){
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    }
     //String enterValidProductID = "";
     String productID = request.getParameter("key");
   
@@ -95,10 +100,40 @@
                 <p>Color<span style="color: orangered;"> *</span></p>
                 <input type="text" name="color" value="<%= color %>" placeholder="" required>
             </div>
-            
+            <!--
             <div class="create-user-field">
                 <p>Dimensions<span style="color: orangered;"> *</span></p>
                 <input type="text" name="dimensions" value="<%= dimensions %>" placeholder="" required>
+            </div>
+            -->
+            <div class="create-user-field">
+                <p>Dimensions<span style="color: orangered;"> *</span></p></p>
+                <div class="gender-field">
+                    <select name="dimensions">
+                        <%if(dimensions.equals("Small")){ %>
+                            <option selected="selected" value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="Extra Large">Extra Large</option>
+                        <%} else if(dimensions.equals("Medium")){%>
+                            <option value="Small">Small</option>
+                            <option selected="selected" value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="Extra Large">Extra Large</option>
+                        <%} else if(dimensions.equals("Large")){%>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option selected="selected" value="Large">Large</option>
+                            <option value="Extra Large">Extra Large</option>
+             
+                        <%} else{ %>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option selected="selected" value="Extra Large">Extra Large</option>
+                        <% } %>
+                    </select>
+                </div>
             </div>
             <div class="create-user-field">
                 <p>Available to Users<span style="color: orangered;"> *</span></p></p>

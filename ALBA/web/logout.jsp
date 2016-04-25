@@ -1,14 +1,12 @@
 <%-- 
-    Document   : accountActivated
-    Created on : Feb 23, 2016, 12:58:03 PM
+    Document   : logout
+    Created on : Apr 11, 2016, 6:34:37 PM
     Author     : armondluthens
 --%>
 <%
-    String loginCheck= (String)session.getAttribute("LoggedIn");
-    if(!loginCheck.equals("1") || loginCheck.equals(null)){
-        String redirectURL = "index.jsp";
-        response.sendRedirect(redirectURL);
-    }
+    session.setAttribute("LoggedIn", "0");
+    String redirectURL = "index.jsp";
+    response.sendRedirect(redirectURL);
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

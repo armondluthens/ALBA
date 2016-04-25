@@ -13,18 +13,20 @@ public class ShoppingCart {
     public String name;
     public String productID;
     public String qty;
+    public String size;
     public float itemPrice;
     public float totalPrice;
     
     public ShoppingCart(){
     
     }
-    public ShoppingCart(String name, String id, String qty, float itemPrice, float totalPrice){
+    public ShoppingCart(String name, String id, String qty, float itemPrice, float totalPrice, String size){
             this.name = name;
             this.productID = id;
             this.qty = qty;
             this.itemPrice = itemPrice;
             this.totalPrice = totalPrice;
+            this.size = size;
     }
     
     public String getName(){
@@ -41,5 +43,8 @@ public class ShoppingCart {
     }
     public float getTotalPrice(){
         return totalPrice;
+    }
+    public String getSize(){
+        return size;
     }
 }

@@ -10,6 +10,13 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%
+    
+    String loginCheck= (String)session.getAttribute("LoggedIn");
+    if(!loginCheck.equals("1") || loginCheck.equals(null)){
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    }
+    
 /**********************************************************************
     Connect to Database
 ***********************************************************************/

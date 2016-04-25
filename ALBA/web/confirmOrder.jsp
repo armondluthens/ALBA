@@ -1,4 +1,10 @@
 <%-- 
+    Document   : confirmOrder
+    Created on : Apr 19, 2016, 6:23:41 PM
+    Author     : armondluthens
+--%>
+
+<%-- 
     Document   : viewClaim
     Created on : Apr 7, 2016, 1:55:10 PM
     Author     : armondluthens
@@ -17,50 +23,18 @@
         response.sendRedirect(redirectURL);
     }
     
-        String curField;
-        String claimNum = request.getParameter("defectClaimSelected");
-        
-        Statement stmt;
-        Connection con;
-        String url = "jdbc:mysql://localhost:3306/ALBA";
-        Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection(url, "root", ""); 
-        stmt = con.createStatement();
-      
-        String getClaim = "SELECT * FROM DEFECT WHERE ClaimNum='"+ claimNum +"'";
-        HashMap<String, String> claim = new HashMap();
-        ResultSet claimRs = stmt.executeQuery(getClaim);
-        String[] claimFields = {"DateReceived","ProductID", "Description","Category", "Email", "Reviewed", "ClaimNum"};
-        while(claimRs.next()){
-            for(int i=0; i<claimFields.length; i++){
-                curField = claimRs.getString(claimFields[i]);
-                claim.put(claimFields[i], curField);
-            }
-        }
-
-         String email = claim.get("Email");
-         String prodID= claim.get("productID");
-         String date= claim.get("DateReceived");
-         String category= claim.get("Category");
-         String description= claim.get("Description");
-         
-        String getClaim2 = "SELECT ProductID FROM DEFECT WHERE ClaimNum='"+ claimNum +"'";
-        ResultSet claimRs2 = stmt.executeQuery(getClaim);
-        String pID="";
-        while(claimRs2.next()){
-            pID = claimRs2.getString("ProductID");
-        }
-        
-        
-        String getAvailableProducts = "SELECT * FROM USERS WHERE Email='"+ email +"'";
-        ResultSet claimSubmitterRs = stmt.executeQuery(getAvailableProducts);
-        String firstName="";
-        String lastName="";
+    String address1=request.getParameter("address1");
+    String address2=request.getParameter("address2");
+    String city=request.getParameter("city");
+    String state=request.getParameter("state");
+    String zip=request.getParameter("zip");
+    String price=request.getParameter("price");
     
-        while(claimSubmitterRs.next()){
-            firstName= claimSubmitterRs.getString("FirstName");
-            lastName= claimSubmitterRs.getString("LastName");
-        }
+    String smallCount= request.getParameter("small");
+    String mediumCount= request.getParameter("medium");
+    String largeCount= request.getParameter("large");
+    String xlCount= request.getParameter("xl");
+        
         
 %>
 <!DOCTYPE html>
@@ -72,7 +46,7 @@
         <link href='http://fonts.googleapis.com/css?family=Lato:100,400,700,900' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Prociono' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
-        <title>ALBA | View Claim</title>
+        <title>ALBA | Review Order</title>
         <meta name="description" content="ALBA web page">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="product.css">
@@ -127,17 +101,26 @@ t       oggle between hiding and showing the dropdown content */
                 <a href="#"><span style="border-bottom: 4px solid orangered;">Manager View</span></a>
             </div>
         <%} %>
-     
-        <div class="claimFormat">
-            <h1>Claim No. <%= claimNum %></h1>
-            <h2>Claim Submitted By: <span style="color: orangered;"><%= firstName %> <%= lastName %></span></h2>
-            <h2>Submitter Email: <span style="color: orangered;"><%= email %></span></h2>
-            <h2>Product ID: <span style="color: orangered;"><%= pID %></span></h2>
-            <h2>Date of Purchase: <span style="color: orangered;"><%= date %></span></h2>
-            <h2>Product Category: <span style="color: orangered;"><%= category %></span></h2>
-            <h2>Product Defect Description <span style="color: orangered;"><%= description %></span></h2>
-            <p></p>
+        
+        <form method="POST" action="successfulPurchase.jsp">
+            <div class="claimFormat">
+                
+                <h1>Please Review Your Order</h1>
+                <h2>Address 1: <span style="color: orangered;"><%= address1 %></span></h2>
+                <h2>Address 2: <span style="color: orangered;"><%= address2 %></span></h2>
+                <h2>City: <span style="color: orangered;"><%= city %></span></h2>
+                <h2>State: <span style="color: orangered;"><%= state %></span></h2>
+                <h2>Zip Code: <span style="color: orangered;"><%= zip %></span></h2>
+                <h2>Total Price: <span style="color: orangered;">$<%= price %></span></h2>
+                
+                <input type="hidden" name="small" value="<%= smallCount %>">
+                <input type="hidden" name="medium" value="<%= mediumCount %>">
+                <input type="hidden" name="large" value="<%= largeCount %>">
+                <input type="hidden" name="xl" value="<%= xlCount %>">
+                
+                <button type="submit">Place Order</button>
         </div>
+        </form>
         
         <div class="footer">
             <ul>
@@ -146,3 +129,4 @@ t       oggle between hiding and showing the dropdown content */
         </div>
     </body>
 </html>
+

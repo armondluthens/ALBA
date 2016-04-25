@@ -11,6 +11,13 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%
+    
+    String loginCheck= (String)session.getAttribute("LoggedIn");
+    if(!loginCheck.equals("1") || loginCheck.equals(null)){
+        String redirectURL = "index.jsp?&invalidLoginAttempt=1";
+        response.sendRedirect(redirectURL);
+    }
+    
     String id = "";
     String buy = "buyProduct.jsp?&prod=";
     
@@ -27,7 +34,7 @@
     if(searchBar == null || searchBar.equals("")){
         String getAvailableProducts = "SELECT * FROM PRODUCTS WHERE Available='1'";
         ResultSet productsRs = stmt.executeQuery(getAvailableProducts);
-        String[] productFields = {"ProductID", "Price", "Qty", "Description", "ProductName"};
+        String[] productFields = {"ProductID", "Price", "Qty", "Description", "ProductName", "Dimensions"};
         while(productsRs.next()){
             HashMap<String, String> product = new HashMap();
             for(int i=0; i<productFields.length; i++){
@@ -109,7 +116,11 @@ window.onclick = function(event) {
     </head>
     <body>
         <div class="title-top">
-            <h1>ALBA, INC.</h1>
+            <% if(session.getAttribute("sessionRole").equals("User")){ %>
+                <a href="userProductPage.jsp"><h1>ALBA, INC.</h1></a>
+            <% } else{ %>
+                <a href="managerProductPage.jsp"><h1>ALBA, INC.</h1></a>
+            <% } %>
         </div>
         <div class="userbar">
             <div class="dropdown">
@@ -118,7 +129,7 @@ window.onclick = function(event) {
                     <a href="accountSettings.jsp">Account Settings</a>
                     <a href="reset-password.jsp">Reset Password</a>
                     <a href="deactivateAccount.jsp">Deactivate Account</a>
-                    <a href="index.jsp">Logout</a>
+                    <a href="logout.jsp">Logout</a>
                 </div>
             </div>
             <!--<h4>Logged In As: <%= session.getAttribute("sessionFirstName") %> <%= session.getAttribute("sessionLastName") %></h4>-->
@@ -129,6 +140,11 @@ window.onclick = function(event) {
                 <input type="text" name="search" value="" placeholder="Search for product...">
                 <button type="submit">SEARCH</button>
             </form>
+            <a href="buyProduct.jsp">
+                <img src="shopping-cart2.png">
+                <input type="hidden" name="test" value="success">
+            </a>
+            
         </div>
         
         <% if(!session.getAttribute("sessionRole").equals("User")){ %>
@@ -148,10 +164,12 @@ window.onclick = function(event) {
             <%= tempMap= availableProducts.get(i) %>
             <% int qty = Integer.parseInt(tempMap.get("Qty")); %>
             <%= id= tempMap.get("ProductID") %>
+            
             <form action="add-to-cart.jsp">
             <div class="product-record">
                     <h2><%= tempMap.get("ProductName")%> </h5>
                     <h5>$<%= tempMap.get("Price") %></h5>
+                    <h5>Size: <%= tempMap.get("Dimensions") %></h5>
                     <p>
                         <%= tempMap.get("Description") %>
                     </p>
@@ -159,15 +177,26 @@ window.onclick = function(event) {
                     
                     <div class="styled-select2">
                         <select name="qtySelected">
-                            <% for(int j=1; j<= qty; j++){ %>
-                            <option value="<%= j %>"><%= j %></option>
+                            <%if(qty <= 0){%>
+                                <option value="">OUT OF STOCK</option>
+                            <%} else{ %>
+                                
+                                <% for(int j=1; j<= qty; j++){ %>
+                                    <option value="<%= j %>"><%= j %></option>
+                                <% } %>
                             <% } %>
+                            
                         </select>
                     </div>
-                    <button action="">ADD</button>
+                    <%if(qty <= 0){%>
+                        <button type="button" disabled style="opacity:0.5;">ADD</button>
+                    <%} else{ %>
+                        <button action="">ADD</button>
+                    <% } %>
                     <input type="hidden" name="id" value="<%= id %>">
                     <input type="hidden" name="price" value="<%=tempMap.get("Price")%>">
                     <input type="hidden" name="name" value="<%=tempMap.get("ProductName")%>">
+                    <input type="hidden" name="size" value="<%=tempMap.get("Dimensions")%>">
             </div>
             </form>
         <% } %>

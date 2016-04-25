@@ -7,12 +7,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String invalidLoginAttempt;
-    if(request.getParameter("invalidInput") == null){
+    if(request.getParameter("invalidLoginAttempt") == null){
         invalidLoginAttempt = "0";
     }
     else{
         invalidLoginAttempt = "1";
     }
+   
 %>
 <!DOCTYPE html>
 <html>
@@ -32,10 +33,11 @@
     <body>
         <div class="title-top">
             <h1>ALBA, INC.</h1>
+           
                 <form action="login-check.jsp" method="POST">
                     <div class="username">
                         <% if(invalidLoginAttempt.equals("0")){ %>
-                        <input type="text" name="email" value="" placeholder="john-doe@example.com">
+                            <input type="text" name="email" value="" placeholder="john-doe@example.com">
                         <% }else {%>
                             <input type="text" name="email" value="" placeholder="john-doe@example.com" style="border: 2px solid orangered;">
                         <% }%>
@@ -47,7 +49,11 @@
                         -->
                     </div>
                     <div class="password">
-                        <input type="password" name="password" value="">
+                        <% if(invalidLoginAttempt.equals("0")){ %>
+                            <input type="password" name="password" value="">
+                        <% }else {%>
+                            <input type="password" name="password" value="" style="border: 2px solid orangered;">
+                        <% }%>
                         <p><a href="forgot-password.jsp">Forgot Password</a></p>
                     </div>
                     <div class="login-button">

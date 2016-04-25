@@ -12,6 +12,11 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    String loginCheck= (String)session.getAttribute("LoggedIn");
+    if(!loginCheck.equals("1") || loginCheck.equals(null)){
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    }
 /**********************************************************************
     Connect to Database
 ***********************************************************************/
@@ -44,16 +49,39 @@
     Get ArrayList of Managers
 **********************************************************************/
     ArrayList<HashMap> allManagers = new ArrayList();
+    ArrayList<HashMap> pendingManagers = new ArrayList();
     String getAllManagers = "SELECT * FROM USERS WHERE Role='Manager'";
     ResultSet managerRs = stmt.executeQuery(getAllManagers);
-    String[] managerFields = {"FirstName", "LastName", "Email"};
+    String[] managerFields = {"FirstName", "LastName", "Email", "AdminApproved"};
     while(managerRs.next()){
             HashMap<String, String> managerHash = new HashMap();
             for(int i=0; i<managerFields.length; i++){
                 curField = managerRs.getString(managerFields[i]);
                 managerHash.put(managerFields[i], curField);
             }
-            allManagers.add(managerHash);
+            if(managerHash.get("AdminApproved").equals("1")){
+                allManagers.add(managerHash);
+            }
+            else{
+                pendingManagers.add(managerHash);
+            }
+            
+    }
+    
+/**********************************************************************
+    Get ArrayList of Users
+**********************************************************************/
+    ArrayList<HashMap> allUsers = new ArrayList();
+    String getAllUsers = "SELECT * FROM USERS WHERE Role='User'";
+    ResultSet userListRs = stmt.executeQuery(getAllUsers);
+    String[] userListFields = {"FirstName", "LastName", "Email"};
+    while(userListRs.next()){
+            HashMap<String, String> userHash = new HashMap();
+            for(int i=0; i<userListFields.length; i++){
+                curField = userListRs.getString(userListFields[i]);
+                userHash.put(userListFields[i], curField);
+            }
+            allUsers.add(userHash);
     }
 
 /**********************************************************************
@@ -268,7 +296,26 @@ t       oggle between hiding and showing the dropdown content */
         </form>
             
             
-        <% if(session.getAttribute("sessionRole").equals("Admin")){ %>    
+        <% if(session.getAttribute("sessionRole").equals("Admin")){ %>
+            <div class="products-table">
+                <h1>Approve Pending Managers</h1>
+            </div>
+
+            <form action="approveManager.jsp" method="POST">
+            <div class="styled-select">
+                <select name="managerSelected">
+                    <option value="">Select Manager</option>
+                    <% for(int i=0; i< pendingManagers.size(); i++){ %>
+                        <%= tempMap= pendingManagers.get(i) %>
+                        <option name="approve" value="<%= tempMap.get("Email")%>"><%= tempMap.get("FirstName")%> <%= tempMap.get("LastName")%></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="insert-button">
+                <button type="submit" name="insert">APPROVE</button>
+            </div>
+            </form>
+                
             <div class="products-table">
                 <h1>Promote Manager To Admin</h1>
             </div>
@@ -287,6 +334,21 @@ t       oggle between hiding and showing the dropdown content */
                 <button type="submit" name="insert">PROMOTE</button>
             </div>
             </form>
+            
+            <div class="products-table">
+                <h1>Current Users In System</h1>
+            </div>
+            
+            <div class="styled-select">
+                <select name="managerSelected">
+                    <option value="">--------------</option>
+                    <% for(int i=0; i< allUsers.size(); i++){ %>
+                        <%= tempMap= allUsers.get(i) %>
+                        <option name="promotion" value="<%= tempMap.get("Email")%>"><%= tempMap.get("FirstName")%> <%= tempMap.get("LastName")%></option>
+                    <% } %>
+                </select>
+            </div>
+            
         <% } %>
         <div class="footer">
             <ul>

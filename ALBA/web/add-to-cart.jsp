@@ -13,6 +13,12 @@
 <%@page import="java.sql.Statement"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    String loginCheck= (String)session.getAttribute("LoggedIn");
+    if(!loginCheck.equals("1") || loginCheck.equals(null)){
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    }
+    
     String qtySelected = request.getParameter("qtySelected");
     String productName = request.getParameter("name");
     int qty = Integer.parseInt(qtySelected);
@@ -20,7 +26,8 @@
     float priceInt = Float.parseFloat(individualPrice);
     float totalPrice = qty * priceInt;
     String productID = request.getParameter("id");
-    ShoppingCart item = new ShoppingCart(productName, productID, qtySelected, priceInt, totalPrice);
+    String size = request.getParameter("size");
+    ShoppingCart item = new ShoppingCart(productName, productID, qtySelected, priceInt, totalPrice, size);
     
     ArrayList<ShoppingCart> currentCart = new ArrayList();
     if(session.getAttribute("myCart") == null){

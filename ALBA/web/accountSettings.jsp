@@ -4,6 +4,13 @@
     Author     : armondluthens
 --%>
 <%
+    
+    String loginCheck= (String)session.getAttribute("LoggedIn");
+    if(!loginCheck.equals("1") || loginCheck.equals(null)){
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    }
+    
     String firstName= (String)session.getAttribute("sessionFirstName");
     String lastName= (String)session.getAttribute("sessionLastName");
     String email= (String)session.getAttribute("sessionEmail");

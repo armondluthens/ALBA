@@ -6,6 +6,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    String loginCheck= (String)session.getAttribute("LoggedIn");
+    if(!loginCheck.equals("1") || loginCheck.equals(null)){
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    }
+    
     String enterValidProductID = "";
     
     String productName = "";
@@ -88,11 +94,24 @@
                 <p>Color<span style="color: orangered;"> *</span></p>
                 <input type="text" name="color" value="<%= color %>" placeholder="" required>
             </div>
-            
+            <!--
             <div class="create-user-field">
                 <p>Dimensions<span style="color: orangered;"> *</span></p>
                 <input type="text" name="dimensions" value="<%= dimensions %>" placeholder="" required>
             </div>
+            -->
+            <div class="create-user-field">
+                <p>Dimensions<span style="color: orangered;"> *</span></p></p>
+                <div class="gender-field">
+                    <select name="dimensions">
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                        <option value="Extra Large">Extra Large</option>
+                    </select>
+                </div>
+            </div>
+            
             <div class="create-user-field">
                 <p>Available to Users<span style="color: orangered;"> *</span></p></p>
                 <div class="gender-field">

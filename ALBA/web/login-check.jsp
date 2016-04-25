@@ -11,7 +11,7 @@
 <%
     String email= request.getParameter("email");
     String password= request.getParameter("password");
-    
+    String redirectURL = "";
     
     Statement stmt;
     Connection con;
@@ -20,60 +20,73 @@
     con = DriverManager.getConnection(url, "root", ""); 
     stmt = con.createStatement();
     
-    String getPassword = "SELECT password FROM USERS WHERE email = '" + email + "';";
-    String passwordReturnedFromSQL="";
-    ResultSet passRs = stmt.executeQuery(getPassword);
-    while(passRs.next()){
-        passwordReturnedFromSQL = passRs.getString("Password");
+    //CHECK FOR EMAIL IN DB
+    String getEmail = "SELECT Email FROM USERS WHERE Email = '" + email + "';";
+    String emailReturnedFromSQL="";
+    ResultSet emailRs = stmt.executeQuery(getEmail);
+    while(emailRs.next()){
+        emailReturnedFromSQL = emailRs.getString("Email");
     }
-    //DECRYPT PASSWORD
-    PasswordEncryption decryptor = new PasswordEncryption();
-    String decryptedPassword = decryptor.decryptPassword(passwordReturnedFromSQL);
-    
-    String getActivation = "SELECT activated FROM USERS WHERE email = '" + email + "';";
-    String activationReturnedFromSQL="";
-    ResultSet actRs = stmt.executeQuery(getActivation);
-    while(actRs.next()){
-        activationReturnedFromSQL = actRs.getString("Activated");
-    }
-    
-    String getRole = "SELECT Role FROM USERS WHERE email = '" + email + "';";
-    String roleReturnedFromSQL="";
-    ResultSet roleRs = stmt.executeQuery(getRole);
-    while(roleRs.next()){
-        roleReturnedFromSQL = roleRs.getString("Role");
-    }
-    
-    boolean validUser= false;
-    if(password.equals(decryptedPassword)  && activationReturnedFromSQL.equals("1")){
-        validUser = true;
-    }
-    
-    String checkForToken = "SELECT UserID FROM USERS WHERE email = '"+ email +"'";
-    String token="";
-    ResultSet tokenRs = stmt.executeQuery(checkForToken);
-    while(tokenRs.next()){
-        token = tokenRs.getString("UserID");
-    }
-    String redirectURL = "";
-    if(validUser == true){
-        if(roleReturnedFromSQL.equals("Manager") ||roleReturnedFromSQL.equals("Admin")){
-            
-            redirectURL = "managerProductPage.jsp?&token=" + token;
-            //redirectURL = "userProductPage.jsp?&token=" + token;
-            response.sendRedirect(redirectURL);
-        }
-        else{
-            redirectURL = "userProductPage.jsp?&token=" + token;
-            //redirectURL = "managerProductPage.jsp?&token=" + token;
-            response.sendRedirect(redirectURL);
-        }
-        
-        
-    }
-    else{
+    if(emailReturnedFromSQL.equals("")){
+        //password="";
         redirectURL = "index.jsp?&invalidLoginAttempt=1";
         response.sendRedirect(redirectURL);
+    }
+    else{
+        String getPassword = "SELECT password FROM USERS WHERE email = '" + email + "';";
+        String passwordReturnedFromSQL="";
+        ResultSet passRs = stmt.executeQuery(getPassword);
+        while(passRs.next()){
+            passwordReturnedFromSQL = passRs.getString("Password");
+        }
+        //DECRYPT PASSWORD
+        PasswordEncryption decryptor = new PasswordEncryption();
+        String decryptedPassword = decryptor.decryptPassword(passwordReturnedFromSQL);
+
+        String getActivation = "SELECT activated FROM USERS WHERE email = '" + email + "';";
+        String activationReturnedFromSQL="";
+        ResultSet actRs = stmt.executeQuery(getActivation);
+        while(actRs.next()){
+            activationReturnedFromSQL = actRs.getString("Activated");
+        }
+
+        String getRole = "SELECT Role FROM USERS WHERE email = '" + email + "';";
+        String roleReturnedFromSQL="";
+        ResultSet roleRs = stmt.executeQuery(getRole);
+        while(roleRs.next()){
+            roleReturnedFromSQL = roleRs.getString("Role");
+        }
+
+        boolean validUser= false;
+        if(password.equals(decryptedPassword)  && activationReturnedFromSQL.equals("1")){
+            validUser = true;
+        }
+
+        String checkForToken = "SELECT UserID FROM USERS WHERE email = '"+ email +"'";
+        String token="";
+        ResultSet tokenRs = stmt.executeQuery(checkForToken);
+        while(tokenRs.next()){
+            token = tokenRs.getString("UserID");
+        }
+
+        if(validUser == true){
+            if(roleReturnedFromSQL.equals("Manager") ||roleReturnedFromSQL.equals("Admin")){
+                session.setAttribute("LoggedIn", "1");
+                redirectURL = "managerProductPage.jsp?&token=" + token;
+                //redirectURL = "userProductPage.jsp?&token=" + token;
+                response.sendRedirect(redirectURL);
+            }
+            else{
+                session.setAttribute("LoggedIn", "1");
+                redirectURL = "userProductPage.jsp?&token=" + token;
+                //redirectURL = "managerProductPage.jsp?&token=" + token;
+                response.sendRedirect(redirectURL);
+            }
+        }
+        else{
+            redirectURL = "index.jsp?&invalidLoginAttempt=1";
+            response.sendRedirect(redirectURL);
+        }
     }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

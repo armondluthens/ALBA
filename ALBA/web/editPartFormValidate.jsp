@@ -7,6 +7,12 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.Statement"%>
 <%
+    String loginCheck= (String)session.getAttribute("LoggedIn");
+    if(!loginCheck.equals("1") || loginCheck.equals(null)){
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    }
+    
     String productName = request.getParameter("productName");
     String productID = request.getParameter("productID");
     String price = request.getParameter("price");

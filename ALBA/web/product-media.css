@@ -46,6 +46,14 @@ and open the template in the editor.
 
 }
 @media screen and (max-width: 500px) {
+    .search-prod{
+        height: 150px;
+    }
+    .search-prod img{
+        float: left;
+        margin-left: 5%;
+        
+    }
     .search-prod input{
         width: 65%;
     }
