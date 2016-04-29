@@ -48,12 +48,13 @@
         String getAvailableProducts = "SELECT * FROM PRODUCTS WHERE " +
                 "ProductID='"+ searchBar +"' OR " +
                 "Price LIKE '%"+ searchBar + "%' OR " +
+                "Category LIKE '%"+ searchBar + "%' OR " +
                 "Qty LIKE '%"+ searchBar + "%' OR " +
                 "Description LIKE '%"+ searchBar + "%' OR " +
                 "ProductName LIKE '%"+ searchBar + "%'; ";
         
         ResultSet productsRs = stmt.executeQuery(getAvailableProducts);
-        String[] productFields = {"ProductID", "Price", "Qty", "Description", "ProductName"};
+        String[] productFields = {"ProductID", "Price", "Qty", "Description", "ProductName", "Dimensions", "Category"};
         while(productsRs.next()){
             HashMap<String, String> product = new HashMap();
             for(int i=0; i<productFields.length; i++){

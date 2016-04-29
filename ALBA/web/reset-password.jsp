@@ -6,7 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String token = request.getParameter("token");
+    String loginCheck= (String)session.getAttribute("LoggedIn");
+    if(!loginCheck.equals("1") || loginCheck.equals(null)){
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    }
     
 %>
 <!DOCTYPE html>
@@ -44,7 +48,11 @@
     </head>
     <body>
         <div class="title-top">
-            <h1>ALBA, INC.</h1>
+            <% if(session.getAttribute("sessionRole").equals("User")){ %>
+                <a href="userProductPage.jsp"><h1>ALBA, INC.</h1></a>
+            <% } else{ %>
+                <a href="managerProductPage.jsp"><h1>ALBA, INC.</h1></a>
+            <% } %>
         </div>
         
         <div class="create-user">
@@ -60,7 +68,7 @@
                 <p>Re-enter Password</p>
                 <input type="password" name="password2" value="" required>
             </div>
-            <input type="hidden" name="token" value="<%= token %>">
+            
             <div class="create-user-button">   
                 <button type="submit">Reset Password</button>
             </div>

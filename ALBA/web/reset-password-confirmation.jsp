@@ -4,6 +4,7 @@
     Author     : armondluthens
 --%>
 
+<%@page import="Armond_Test.PasswordEncryption"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
@@ -11,8 +12,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    String token = request.getParameter("token");
     String password = request.getParameter("password");
+    String email = (String)session.getAttribute("sessionEmail");
+    
+    PasswordEncryption encryptor = new PasswordEncryption();
+    String encryptedPassword = encryptor.encryptPassword(password);
     
     Statement stmt;
     Connection con;
@@ -21,21 +25,10 @@
     con = DriverManager.getConnection(url, "root", ""); 
     stmt = con.createStatement();
 
-    boolean validToken= false;
-    String checkForToken = "SELECT UserID FROM USERS WHERE UserID = '"+ token +"'";
-    String tokenReturnedFromSQL="";
-    ResultSet tokenRs = stmt.executeQuery(checkForToken);
-    while(tokenRs.next()){
-        tokenReturnedFromSQL = tokenRs.getString("UserID");
-        if(tokenReturnedFromSQL.equals(token)){
-            validToken = true;
-        }
-    }
-    String sqlChangePassword = "UPDATE USERS SET Password='"+ password +"' WHERE UserID='"+ token +"';";
-    if(validToken == true){
-        stmt.executeUpdate(sqlChangePassword);
-        response.sendRedirect("index.jsp");
-    }
+
+    String sqlChangePassword = "UPDATE USERS SET Password='"+ encryptedPassword +"' WHERE Email='"+ email +"';";
+    stmt.executeUpdate(sqlChangePassword);
+    response.sendRedirect("userProductPage.jsp");
 %>
 <!DOCTYPE html>
 <html>

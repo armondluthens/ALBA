@@ -78,8 +78,8 @@
         
         <div class="footer">
             <ul>
-                <li><a href="#">Membership Types</a></li>
-                <li><a href="#">Development Team</a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
             </ul>
         </div>
 

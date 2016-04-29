@@ -26,13 +26,23 @@
     Class.forName("com.mysql.jdbc.Driver");
     con = DriverManager.getConnection(url, "root", ""); 
     stmt = con.createStatement();
-    
+
+/**********************************************************************
+    Get All Product IDs
+***********************************************************************/
+    ArrayList<String> productIDList = new ArrayList();
+    String curField="";
+    String getID = "SELECT ProductID FROM PRODUCTS;";
+    ResultSet productsRs = stmt.executeQuery(getID);
+    while(productsRs.next()){
+        curField = productsRs.getString("ProductID");
+        productIDList.add(curField);
+    }
 /**********************************************************************
     Get All Available Claims From DEFECT Table
 ***********************************************************************/
     ArrayList<HashMap> defectClaims = new ArrayList();
     int defectCount=0;
-    String curField;
     //String getDefectClaims = "SELECT * FROM DEFECT WHERE Reviewed='0'";
     String getDefectClaims = "SELECT * FROM DEFECT";
     ResultSet defectRs = stmt.executeQuery(getDefectClaims);
@@ -104,12 +114,22 @@
             <h1>Product Defect Claim </h1>
             <h6><span style="color: orangered;"> *</span> required field</h6>
           
-            
+           <!-- 
             <form method="POST" action="submitDefect.jsp" onsubmit="return validateForm(this);">
+           -->
+           <form method="POST" action="handleReturn.jsp" onsubmit="return validateForm(this);">
             <div class="create-user-field">
-                <p>Product ID<span style="color: orangered;"> *</span></p>
-                <input type="text" name="productID" value="" placeholder="" required>
+                <p>Product ID<span style="color: orangered;"> *</span></p></p>
+                <div class="gender-field">
+                    <select name="productID">
+                        <option value="select">Select</option>
+                        <%for(int i=0; i< productIDList.size(); i++){ %>
+                        <option value="<%= productIDList.get(i)%>"><%= productIDList.get(i)%></option>
+                        <% } %>
+                    </select>
+                </div>
             </div>
+            
                 
             <div class="create-user-field">
                 <p>Date Purchased<span style="color: orangered;"> *</span></p>
@@ -121,8 +141,9 @@
                     <select name="category">
                         <option value="select">Select</option>
                         <option value="electronics">Electronics</option>
-                        <option value="food">Home</option>
-                        <option value="food">Garden</option>
+                        <option value="audio">Audio</option>
+                        <option value="home">Home</option>
+                        <option value="office">Office</option>
                     </select>
                 </div>
             </div>

@@ -152,10 +152,45 @@
                 <p>Expiration Date<span style="color: orangered;"> *</span></p>
                 <input type="date" name="expirationDate" value="<%= expirationDate %>" placeholder="" required>
             </div>
+            
+            <!--
             <div class="create-user-field">
                 <p>Category<span style="color: orangered;"> *</span></p>
                 <input type="text" name="category123" value="<%= category %>" placeholder="" required>
             </div>
+            -->
+            <div class="create-user-field">
+                <p>Category<span style="color: orangered;"> *</span></p></p>
+                <div class="gender-field">
+                    <select name="category123">
+                        <%if(category.equals("electronics")){ %>
+                            <option selected="selected" value="electronics">Electronics</option>
+                            <option value="audio">Audio</option>
+                            <option value="home">Home</option>
+                            <option value="office">Office</option>
+                            
+                        <%} else if(category.equals("audio")){%>
+                            <option value="electronics">Electronics</option>
+                            <option selected="selected" value="audio">Audio</option>
+                            <option value="home">Home</option>
+                            <option value="office">Office</option>
+                            
+                        <%} else if(category.equals("home")){%>
+                            <option value="electronics">Electronics</option>
+                            <option value="audio">Audio</option>
+                            <option selected="selected" value="home">Home</option>
+                            <option value="office">Office</option>
+             
+                        <%} else{ %>
+                            <option value="electronics">Electronics</option>
+                            <option value="audio">Audio</option>
+                            <option value="home">Home</option>
+                            <option selected="selected" value="office">Office</option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            
             <div class="create-user-field">
                 <p>Supplier<span style="color: orangered;"> *</span></p>
                 <input type="text" name="supplier123" value="<%= supplier %>" placeholder="" required>

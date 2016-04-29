@@ -25,7 +25,11 @@
     </head>
     <body>
         <div class="title-top">
-            <h1>ALBA, INC.</h1>
+            <% if(session.getAttribute("sessionRole").equals("User")){ %>
+                <a href="userProductPage.jsp"><h1>ALBA, INC.</h1></a>
+            <% } else{ %>
+                <a href="managerProductPage.jsp"><h1>ALBA, INC.</h1></a>
+            <% } %>
         </div>
         
         <div class="deactivate">
